@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 
+// This console application is designed to automate the opening of various web browsers and applications
+// at the start of a workday or when needed. It allows users to quickly launch frequently used websites
+// in different browsers such as Microsoft Edge, Google Chrome, Mozilla Firefox, and Brave. Additionally,
+// it provides a method to open any application by specifying its file path, facilitating quick access
+// to essential tools like Visual Studio or custom applications. 
+// Initially, this application will open gmail, outlook, and github in Microsoft Edge. Modify it to suit your needs.
 class Program
 {
     static void Main(string[] args)
@@ -13,11 +19,20 @@ class Program
         // Opens Edge and navigates to Outlook
         OpenUrlInEdge("https://outlook.office.com/mail/");
 
-        // Opens Visual Studio
-        OpenApplication(@"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe");
+        // Opens Github in Edge and navigates to Github
+        OpenUrlInEdge("https://github.com");
 
-        // Opens Obsidian
-        OpenApplication(@"C:\Users\ryant\AppData\Local\Programs\obsidian\Obsidian.exe");
+        //// Opens Github in Chrome
+        //OpenUrlInChrome("https://github.com");
+
+        //// Opens example.com in Firefox
+        //OpenUrlInFirefox("https://www.example.com");
+
+        //// Opens a specific URL in Brave
+        //OpenUrlInBrave("https://news.ycombinator.com");
+
+        //Manually enter filepaths for custom applications
+        //OpenApplication("C:\\Program Files\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE");
 
         Console.WriteLine("Applications should now be open.");
         Console.ReadLine(); // Keep the console window open
@@ -32,6 +47,42 @@ class Program
         catch (Exception ex)
         {
             Console.WriteLine("Could not open URL in Edge: " + ex.Message);
+        }
+    }
+
+    static void OpenUrlInChrome(string url)
+    {
+        try
+        {
+            Process.Start("cmd.exe", $"/c start chrome {url}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Could not open URL in Chrome: " + ex.Message);
+        }
+    }
+
+    static void OpenUrlInFirefox(string url)
+    {
+        try
+        {
+            Process.Start("cmd.exe", $"/c start firefox {url}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Could not open URL in Firefox: " + ex.Message);
+        }
+    }
+
+    static void OpenUrlInBrave(string url)
+    {
+        try
+        {
+            Process.Start("cmd.exe", $"/c start brave {url}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Could not open URL in Brave: " + ex.Message);
         }
     }
 
